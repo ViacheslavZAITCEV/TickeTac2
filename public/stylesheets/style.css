@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+h2 {
+  color: white;
+}
+
+#background {
+  background-image: linear-gradient(rgb(187, 216, 228), rgb(55, 135, 209));
+}
