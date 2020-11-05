@@ -4,7 +4,7 @@ var journeyModel = require('../models/journey')
 var usersModel = require('../models//users')
 
 var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
-var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
+var date = ["2020-11-20","2020-11-21","2020-11-22","2020-11-23","2020-11-24","2020-11-25","2020-11-26","2020-11-27"]
 
 
 
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   console.log(req.session.user);
   if (req.session.user == undefined || req.session.user == NaN){
     console.log('route pour index.ejs');
-    res.render('index');
+    res.render('index', {name : undefined});
   }else{
     res.render('home', { name : req.session.user.login });
   }
@@ -57,7 +57,7 @@ router.get('/last-trip', async function(req, res, next) {
     res.render('index');
   }else{
     console.log('voyage: ', req.session.user.voyage);
-    res.render('last-trip', {
+    res.render('last-trips', {
       name : req.session.user.login, 
       ticket : req.session.user.voyage});
   }

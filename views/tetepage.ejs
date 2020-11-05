@@ -1,11 +1,13 @@
 <nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="../images/train.png" width="30" height="30" class="logo d-inline-block align-top" alt="TickeTac">
       TickeTac
     </a>
     <div class="d-flex d-inline-flex">
       <h5 class=" mx-2">
-        Bonjour
+        <% if (name != undefined){ %>
+        <span class="mx-2"> <%= name %> </span>
+        <% } %>
         <a href="/deconexion" class="login  mx-2">Deconnexion</a>
         <a href="/last-trip" class="mytrip  mx-2">My last Trip</a>
       </h5>
