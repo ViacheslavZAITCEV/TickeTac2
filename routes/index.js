@@ -22,10 +22,8 @@ router.get('/', function(req, res, next) {
 router.get('/home', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
     res.redirect('/');
-  }else{
-    await entrerUser(req);
-    res.render('home', { });
   }
+    res.render('home', { });
 });
 
 router.post('/sign-in', async function(req, res, next) {
@@ -112,20 +110,16 @@ router.post('/result', async function(req, res, next) {
 
 router.get('/mytickets', async function(req, res, next) {
   await usersModel.updateOne(
+    {email: req.session.user.email},
     {$push: {voyage: req.query}}
     );
   var journey = await usersModel.findOne({
     email: req.session.user.email
   });
   console.log(journey);
+  console.log(req.session.user)
   res.render('mytickets', {ticket:req.query});
 });
-
-router.get('/last-trips', function(req, res, next) {
-  res.render('last-trips', { });
-});
-
-
 
 // -----------------------------------------------------------
 //
