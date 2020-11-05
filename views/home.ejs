@@ -13,19 +13,19 @@
         <div class="row">
             <h2 class="offset-2">One-way ticket:</h2>
         </div>
-        <form>
+        <form action="/result" method="POST">
             <div class="row col-10 offset-1">
               <div class="col">
-                <input type="text" class="form-control" placeholder="First name">
+                <input type="text" class="form-control" placeholder="Departure" name="dep">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Last name">
+                <input type="text" class="form-control" placeholder="Arrival" name="arr">
               </div>
               <div class="col">
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" name="date">
               </div>
               <div>
-                <a type="button" class="btn btn-danger" class="form-control" width="80px">Go</a>
+                <button type="submit" class="btn btn-danger" class="form-control" width="80px">Go</button>
               </div>
             </div>
             <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">

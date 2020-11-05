@@ -59,8 +59,15 @@ router.get('/save', async function(req, res, next) {
 
 // Cette route est juste une verification du Save.
 // Vous pouvez choisir de la garder ou la supprimer.
-router.get('/result', function(req, res, next) {
-
+router.post('/result', async function(req, res, next) {
+  console.log(req.body);
+  var journey = await journeyModel.find(
+    {departure: req.body.dep,
+      arrival: req.body.arr,
+      date: req.body.date
+    }
+  );
+  console.log(journey);
   // Permet de savoir combien de trajets il y a par ville en base
   for(i=0; i<city.length; i++){
 
@@ -76,7 +83,7 @@ router.get('/result', function(req, res, next) {
   }
 
 
-  res.render('result', { });
+  res.render('result', {journey, date: req.body.date});
 });
 
 router.get('/mytickets', function(req, res, next) {
