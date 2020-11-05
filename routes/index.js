@@ -30,7 +30,7 @@ router.get('/home', async function(req, res, next) {
 router.post('/sign-in', async function(req, res, next) {
   await entrerUser(req);
   if (req.session.user == undefined || req.session.user == NaN){  
-    res.render('index');
+    res.redirect('/');
   }else{
     res.render('home', {name : req.session.user.login });
   }  
@@ -41,9 +41,9 @@ router.post('/sign-up', async function(req, res, next) {
   await newUser(req);
   console.log('route sign-up continue');
   if (req.session.user == undefined || req.session.user == NaN){  
-    res.render('index');
+    res.redirect('/');
   }else{
-    res.render('home', {name : req.session.user.login });
+    res.render('home', {name : req.session.user.name });
   } 
 });
 
@@ -54,12 +54,12 @@ router.get('/deconexion', async function(req, res, next) {
 
 router.get('/last-trip', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
-    res.render('index');
+    res.redirect('/');
   }else{
     console.log('voyage: ', req.session.user.voyage);
     res.render('last-trips', {
       name : req.session.user.login, 
-      ticket : req.session.user.voyage});
+      ticket : req.session.user.lastTrip});
   }
 });
 
@@ -90,7 +90,7 @@ router.get('/save', async function(req, res, next) {
     }
 
   }
-  res.render('index', { title: 'Express' });
+  res.redirect('/');
 });
 
 
@@ -105,7 +105,7 @@ router.post('/result', async function(req, res, next) {
     }
   );
  
-  res.render('result', {journey, date: req.body.date, name : req.session.user.login});
+  res.render('result', {journey, date: req.body.date, name : req.session.user.name});
 });
 
 router.get('/mytickets', async function(req, res, next) {
@@ -117,7 +117,7 @@ router.get('/mytickets', async function(req, res, next) {
     email: req.session.user.email
   });
   trips = user.voyage;
-  res.render('mytickets', {trips, name : req.session.user.login});
+  res.render('mytickets', {trips, name : req.session.user.name});
 });
 
 router.get('/delete', async function(req, res, next) {
@@ -129,8 +129,13 @@ router.get('/delete', async function(req, res, next) {
       email: req.session.user.email
     });
   trips = user.voyage;
-  res.render('mytickets', {trips});
+  res.render('mytickets', {trips, name : req.session.user.name});
 });
+
+
+
+
+
 // -----------------------------------------------------------
 //
 //                       -= Functions =-
