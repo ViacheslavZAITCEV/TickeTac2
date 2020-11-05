@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/home', function(req, res, next) {
-  res.render('home', { title: 'Express' });
+  res.render('home', { });
 });
 
 
@@ -67,7 +67,15 @@ router.get('/result', function(req, res, next) {
   }
 
 
-  res.render('index', { title: 'Express' });
+  res.render('result', { });
+});
+
+router.get('/mytickets', function(req, res, next) {
+  res.render('mytickets', { });
+});
+
+router.get('/last-trips', function(req, res, next) {
+  res.render('last-trips', { });
 });
 
 module.exports = router;
