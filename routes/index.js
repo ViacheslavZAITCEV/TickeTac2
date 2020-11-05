@@ -23,7 +23,6 @@ router.get('/home', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
     res.redirect('/');
   }else{
-    await entrerUser(req);
     res.render('home', {name : req.session.user.login });
   }
 });
@@ -53,14 +52,14 @@ router.get('/deconexion', async function(req, res, next) {
   res.redirect('/');
 });
 
-router.get('/lasttrip', async function(req, res, next) {
+router.get('/last-trip', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
     res.render('index');
   }else{
     console.log('voyage: ', req.session.user.voyage);
     res.render('last-trip', {
       name : req.session.user.login, 
-      listvoyage : req.session.user.voyage});
+      ticket : req.session.user.voyage});
   }
 });
 
