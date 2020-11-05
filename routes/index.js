@@ -11,7 +11,7 @@ var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.session.user);
-  if (req.session.user == undefined){
+  if (req.session.user == undefined || req.session.user == NaN){
     console.log('route pour index.ejs');
     res.render('index');
   }else{
@@ -53,6 +53,14 @@ router.get('/deconexion', async function(req, res, next) {
   res.redirect('/');
 });
 
+router.get('/lasttrip', async function(req, res, next) {
+  if (req.session.user == undefined || req.session.user == NaN){  
+    res.render('index');
+  }else{
+    console.log('voyage: ', req.session.user.voyage);
+    res.render('last-trip', {listvoyage : req.session.user.voyage});
+  }
+});
 
 
 
