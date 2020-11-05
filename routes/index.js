@@ -11,7 +11,7 @@ var options = {
  };
 
 // --------------------- BDD -----------------------------------------------------
-mongoose.connect('mongodb+srv://XXXXXXXX:*********@XXXXXXXX-0hsfc.mongodb.net/Ticketac?retryWrites=true',
+mongoose.connect('mongodb+srv://apliTickeTac:apliTickeTac@cluster0.vy06n.mongodb.net/tickets?retryWrites=true&w=majority',
    options,
    function(err) {
     if (err) {
