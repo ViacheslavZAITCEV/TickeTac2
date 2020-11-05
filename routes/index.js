@@ -63,9 +63,6 @@ router.get('/last-trip', async function(req, res, next) {
   }
 });
 
-
-
-
 // Remplissage de la base de donnée, une fois suffit
 router.get('/save', async function(req, res, next) {
 
@@ -116,14 +113,24 @@ router.get('/mytickets', async function(req, res, next) {
     {email: req.session.user.email},
     {$push: {voyage: req.query}}
     );
-  var journey = await usersModel.findOne({
+  var user = await usersModel.findOne({
     email: req.session.user.email
   });
-  console.log(journey);
-  console.log(req.session.user)
-  res.render('mytickets', {ticket:req.query, name : req.session.user.login});
+  trips = user.voyage;
+  res.render('mytickets', {trips, name : req.session.user.login});
 });
 
+router.get('/delete', async function(req, res, next) {
+  await usersModel.updateOne(
+    {email: req.session.user.email},
+    {$pull: {voyage: req.query}}
+    );
+  var user = await usersModel.findOne({
+      email: req.session.user.email
+    });
+  trips = user.voyage;
+  res.render('mytickets', {trips});
+});
 // -----------------------------------------------------------
 //
 //                       -= Functions =-
