@@ -53,13 +53,27 @@ router.get('/deconexion', async function(req, res, next) {
 });
 
 router.get('/last-trip', async function(req, res, next) {
+  console.log('my last trips=',JSON.stringify(req.query.trips));
   if (req.session.user == undefined || req.session.user == NaN){  
     res.render('index');
   }else{
-    console.log('voyage: ', req.session.user.voyage);
-    res.render('last-trips', {
-      name : req.session.user.login, 
-      ticket : req.session.user.voyage});
+    if(req.query.key != undefined && req.query.key== 'hello'){
+      await usersModel.updateOne(
+        {email: req.session.user.email},
+        {$push: {lastTrip: req.session.user.voyage}}
+        );
+      var user = await usersModel.findOne({
+          email: req.session.user.email
+        });
+      last_trips = user.lastTrip;
+      console.log(last_trips)
+      res.render('last-trips', {
+        name : req.session.user.login, 
+        ticket : last_trips});
+    }else{
+      res.redirect('/home');
+    }
+    
   }
 });
 

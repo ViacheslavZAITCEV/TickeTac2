@@ -31,11 +31,11 @@
                         for (var i=0; i<ticket.length; i++){
                     %>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><%=ticket.dep%>/<%=ticket.arr%></td>
-                    <td><%=ticket.date%></td>
-                    <td><%=ticket.time%></td>
-                    <td><%=ticket.price%>€</td>
+                    <th scope="row"><%=i%></th>
+                    <td><%=ticket[i].dep%>/<%=ticket[i].arr%></td>
+                    <td><%=ticket[i].date%></td>
+                    <td><%=ticket[i].time%></td>
+                    <td><%=ticket[i].price%>€</td>
                 </tr>
                     <% 
                         }

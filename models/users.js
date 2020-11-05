@@ -11,7 +11,8 @@ var train = {
 var UserSchema = mongoose.Schema({
     email : String,
     pass : String,
-    voyage : Array
+    voyage : Array,
+    lastTrip : Array
   });
   
 module.exports = mongoose.model('users', UserSchema);
