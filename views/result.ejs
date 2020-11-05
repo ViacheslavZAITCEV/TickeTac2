@@ -25,7 +25,7 @@
                     <span><%=journey[i].departure%>/<%=journey[i].arrival%></span>
                     <span>train departure at: <%=journey[i].departureTime%></span>
                     <span><%=journey[i].price%>€</span>
-                    <a class="btn btn-danger">OK</a>
+                    <a href="/mytickets?dep=<%=journey[i].departure%>&arr=<%=journey[i].arrival%>&time=<%=journey[i].departureTime%>&price=<%=journey[i].price%>&date=<%=date%>" class="btn btn-danger">OK</a>
                 </li>
                 <%}%>
               </ul>

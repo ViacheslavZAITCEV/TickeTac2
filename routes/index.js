@@ -78,7 +78,8 @@ router.post('/result', async function(req, res, next) {
 });
 
 router.get('/mytickets', function(req, res, next) {
-  res.render('mytickets', { });
+  console.log(req.query)
+  res.render('mytickets', {ticket:req.query});
 });
 
 router.get('/last-trips', function(req, res, next) {
