@@ -133,10 +133,15 @@ router.get('/last-trips', function(req, res, next) {
 //
 //*************************************************************
 
-function entrerUser(req){
-  var user = findUser(req.body.email);
+async function entrerUser(req){
+  console.log('verification of user :', req.body.email);
+  var user = await usersModel.findOne({email : req.body.email});
+  console.log('user: ', user);
   if (user.pass == req.body.pass){
     req.session.user = user;
+    console.log('user is connected');
+  }else{
+    console.log('error of verification password');
   }
 }
 
