@@ -32,7 +32,7 @@ router.post('/sign-in', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
     res.render('index');
   }else{
-    res.render('home', { });
+    res.render('home', {name : req.session.user.login });
   }  
 });
 
@@ -43,7 +43,7 @@ router.post('/sign-up', async function(req, res, next) {
   if (req.session.user == undefined || req.session.user == NaN){  
     res.render('index');
   }else{
-    res.render('home', { });
+    res.render('home', {name : req.session.user.login });
   } 
 });
 
@@ -108,25 +108,21 @@ router.post('/result', async function(req, res, next) {
     }
   );
  
-  res.render('result', {journey, date: req.body.date});
+  res.render('result', {journey, date: req.body.date, name : req.session.user.login});
 });
 
 router.get('/mytickets', async function(req, res, next) {
   await usersModel.updateOne(
+    {email: req.session.user.email},
     {$push: {voyage: req.query}}
     );
   var journey = await usersModel.findOne({
     email: req.session.user.email
   });
   console.log(journey);
-  res.render('mytickets', {ticket:req.query});
+  console.log(req.session.user)
+  res.render('mytickets', {ticket:req.query, name : req.session.user.login});
 });
-
-router.get('/last-trips', function(req, res, next) {
-  res.render('last-trips', { });
-});
-
-
 
 // -----------------------------------------------------------
 //

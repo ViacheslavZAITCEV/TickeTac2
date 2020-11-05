@@ -14,7 +14,38 @@
         <div class="row">
             <h2 class="offset-2">My last trips:</h2>
         </div>
-
+        <div class="row">
+            <%  if (ticket.length != 0){ %>
+            <table class="table table-light col-10 offset-1">
+                <thead>
+                <tr>
+                    <th scope="col">N˚</th>
+                    <th scope="col">Journey</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Departure Time</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% 
+                        for (var i=0; i<ticket.length; i++){
+                    %>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><%=ticket.dep%>/<%=ticket.arr%></td>
+                    <td><%=ticket.date%></td>
+                    <td><%=ticket.time%></td>
+                    <td><%=ticket.price%>€</td>
+                </tr>
+                    <% 
+                        }
+                    %>
+                </tbody>
+            </table>
+            <% }else { %>
+                <h2 class="offset-2">You don't have any trips:</h2>
+            <% } %>
+        </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
