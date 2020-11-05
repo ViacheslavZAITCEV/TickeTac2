@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     console.log('route pour index.ejs');
     res.render('index');
   }else{
-    res.render('home', { });
+    res.render('home', { name : req.session.user.login });
   }
 });
 
@@ -24,7 +24,7 @@ router.get('/home', async function(req, res, next) {
     res.redirect('/');
   }else{
     await entrerUser(req);
-    res.render('home', { });
+    res.render('home', {name : req.session.user.login });
   }
 });
 
@@ -58,7 +58,9 @@ router.get('/lasttrip', async function(req, res, next) {
     res.render('index');
   }else{
     console.log('voyage: ', req.session.user.voyage);
-    res.render('last-trip', {listvoyage : req.session.user.voyage});
+    res.render('last-trip', {
+      name : req.session.user.login, 
+      listvoyage : req.session.user.voyage});
   }
 });
 
